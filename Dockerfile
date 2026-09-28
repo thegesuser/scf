@@ -1,5 +1,5 @@
 # base upon Debian Buster
-FROM debian:buster-slim
+FROM debian:bookworm
 
 # set correct timezone + generic UTF-8 locale
 ENV TZ=Europe/Berlin LC_ALL=C.UTF-8
@@ -12,22 +12,22 @@ RUN mkdir -p /usr/share/man/man1
 
 # install necessary packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
- openjdk-11-jre-headless \
- python3 \
- wget \
- unzip \
- && rm -rf /var/lib/apt/lists/*
+    openjdk-17-jre-headless \
+    python3 \
+    wget \
+    unzip \
+    && rm -rf /var/lib/apt/lists/*
 
 # download/extract BaseX
 RUN wget https://files.basex.org/releases/9.3.3/BaseX933.zip -O basex.zip \
- && unzip basex.zip -d tools \
- && rm basex.zip
+    && unzip basex.zip -d tools \
+    && rm basex.zip
 
 # download/extract/move Saxon HE 9
 RUN wget https://sourceforge.net/projects/saxon/files/Saxon-HE/9.9/SaxonHE9-9-1-7J.zip/download -O saxon.zip \
- && unzip saxon.zip saxon9he.jar \
- && mv saxon9he.jar tools/basex/lib/custom \
- && rm saxon.zip
+    && unzip saxon.zip saxon9he.jar \
+    && mv saxon9he.jar tools/basex/lib/custom \
+    y    && rm saxon.zip
 
 # copy Webapp
 COPY webapp/*.xqm webapp/scf_service_config*.xml webapp/
