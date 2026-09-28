@@ -27,7 +27,7 @@ RUN wget https://files.basex.org/releases/9.3.3/BaseX933.zip -O basex.zip \
 RUN wget https://sourceforge.net/projects/saxon/files/Saxon-HE/9.9/SaxonHE9-9-1-7J.zip/download -O saxon.zip \
     && unzip saxon.zip saxon9he.jar \
     && mv saxon9he.jar tools/basex/lib/custom \
-    y    && rm saxon.zip
+    && rm saxon.zip
 
 # copy Webapp
 COPY webapp/*.xqm webapp/scf_service_config*.xml webapp/
